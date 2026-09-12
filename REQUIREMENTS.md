@@ -1,4 +1,10 @@
-# X98 requirements — working draft 0.2
+# X98 requirements — working draft 0.3
+
+The current binary specification is [v0.3](FORMAT-SPEC-v0.3.md), together
+with its v0.2 base layouts. FLXS is an alternative fidelity representation
+for all recorded revolutions of one surface, not a reduced-fidelity profile.
+Where CELL/PHAS is required below, FLXS may supply equivalent source-quantum
+transition timelines. INDEX duration and record advance remain independent.
 
 ## 1. Purpose
 
@@ -106,7 +112,7 @@ A file declares its minimum profile. Readers must reject a profile they cannot h
 
 ## 7. Write support boundary
 
-Version 0.2 is a read-only base-image specification. Emulator writes belong in a separate overlay file. The base image remains immutable.
+Version 0.3 is an immutable base-image specification. Writes belong in a separate overlay file. The base image remains immutable; no normative overlay binary layout is defined here.
 
 The overlay design must identify the base image by whole-file SHA-256 or immutable image UUID plus directory digest, and must replace complete affected track/revolution objects. Sector-only patches are insufficient for arbitrary magnetic layouts.
 

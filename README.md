@@ -16,14 +16,15 @@ particular emulator. Users are responsible for ensuring that every source
 image and use is lawful and properly authorized.
 
 - [REQUIREMENTS.md](REQUIREMENTS.md): product and compatibility requirements
-- [FORMAT-SPEC-v0.2.md](FORMAT-SPEC-v0.2.md): normative binary format draft
+- [FORMAT-SPEC-v0.3.md](FORMAT-SPEC-v0.3.md): current binary format update, including FLXS compact-surface timing
+- [FORMAT-SPEC-v0.2.md](FORMAT-SPEC-v0.2.md): base container layouts, read with the v0.3 update
 - [CONVERTER-CONFORMANCE.md](CONVERTER-CONFORMANCE.md): converter and reader validation plan
 - [DISCLAIMER.md](DISCLAIMER.md): warranty, preservation, interoperability, and third-party-rights notice
 - [LICENSE.md](LICENSE.md): CC BY 4.0 license notice and canonical terms
 
 `X98` and the `.x98` extension are provisional names. The format is intentionally specified independently of every source-image format and implementation. Source formats are handled only by import/export adapters; they are not structural templates or normative authorities.
 
-Version 0.2 is a review draft. Writers must not label files as stable release files until the format is frozen as version 1.0.
+Version 0.3 is the current review draft. It adds FLXS, a per-surface stream of source-quantum transition deltas, alongside CELL/PHAS. It preserves recorded revolutions, INDEX timing and record advance while allowing independent compression and exact sharing. Readers retain v0.1/v0.2 compatibility; older readers must reject unsupported v0.3 data. Writers must not label files as stable release files until the format is frozen as version 1.0.
 
 ## License
 

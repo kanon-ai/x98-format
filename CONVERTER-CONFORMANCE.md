@@ -1,8 +1,12 @@
 # X98 converter and reader conformance plan
 
+Current target: [X98 v0.3](FORMAT-SPEC-v0.3.md), including FLXS and backward
+reading of valid v0.1/v0.2 files. This plan specifies tests, not a claim that
+every implementation has passed them.
+
 ## 1. Required deliverables
 
-The Floppy State Viewer project should implement these components independently:
+Implementations should provide these components independently:
 
 1. One or more source-image input adapters.
 2. X98 writer.
@@ -18,7 +22,7 @@ The emulator reader should be a second implementation and consume the generic X9
 source header/index observations
   -> validated flux intervals per track/revolution
   -> index-aligned transition timeline
-  -> nominal CELL grid + PHAS residuals
+  -> nominal CELL grid + PHAS residuals, or source-quantum FLXS per surface
   -> content deduplication / one-level deltas
   -> per-object compression
   -> directory, digests, finalized header
@@ -46,12 +50,21 @@ Test at minimum:
 - bad header CRC, directory digest, payload CRC;
 - duplicate IDs, missing references, wrong types, self/cyclic/depth-two deltas;
 - decompression overrun and trailing compressed bytes.
+- FLXS header/SURF cylinder, head, count and quantum mismatches;
+- zero, truncated, overflowing and overlong ULEB128 values;
+- FLXS contiguous stream extents, exact counts and no trailing bytes;
+- empty FLXS revolutions, mixed surface representations and minor-version checks;
+- half-quantum endpoint rounding and ties-to-even source-bin projection;
+- non-equal INDEX duration and record advance across consecutive revolutions.
 
 ## 4. Source fidelity comparison
 
 For every source track/revolution:
 
 - source and X98 revolution counts and order match;
+- complete record advance is preserved independently of index duration;
+- FLXS cumulative source-quantum bins match exactly; no transition is omitted,
+  merged, fabricated, reordered or repaired;
 - source index duration and X98 `index_duration_ps` differ by no more than declared conversion rounding;
 - transition count matches after the documented source decoder;
 - every reconstructed transition differs from the source timeline by no more than `max(source_quantum_ps / 2, nominal_cell_ps / 512)` plus integer rounding;
@@ -103,6 +116,7 @@ Measure rather than assume:
 - deduplication savings;
 - delta savings;
 - compression savings;
+- FLXS versus CELL/PHAS cost per surface, including directory overhead;
 - cold open time;
 - first-track latency;
 - cached-track latency;

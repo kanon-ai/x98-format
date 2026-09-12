@@ -1,5 +1,9 @@
 # X98 Magnetic Surface Image binary format
 
+Historical base layout: the current review draft is [v0.3](FORMAT-SPEC-v0.3.md).
+Read that update for FLXS, profile mapping, version checks and replay timing
+clarifications; its explicit corrections take precedence over this document.
+
 Status: working draft 0.2, 2026-09-05  
 Byte order: little-endian  
 Provisional extension: `.x98`
