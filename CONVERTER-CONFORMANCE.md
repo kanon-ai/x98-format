@@ -147,6 +147,22 @@ Each conversion report records:
 
 ## 9. Release gate
 
+### Additional v0.4 edited-media checks
+
+For the [v0.4 extension](FORMAT-SPEC-v0.4.md), independently verify:
+
+- minor-version and WRITE_PROTECTED validation, preservation, and reporting;
+- protected WRITE/FORMAT refusal, without applying an overlay to bypass it;
+- standalone reopen and conversion without any producer-private journal;
+- current SURF references take precedence over retained unreferenced objects;
+- partial-write transitions outside every gate remain unchanged for every observation;
+- overlapping writes use final-write order and full formatting is labeled generated;
+- shared objects remain immutable and unrelated surfaces are preserved;
+- metadata reference chains and generated-versus-acquired provenance are retained;
+- unsupported target properties are explicitly reported, not silently dropped.
+
+These are required test cases, not a statement that existing converters pass.
+
 Do not freeze version 1.0 until:
 
 - the viewer's writer and independent reader pass all tests;

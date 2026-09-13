@@ -16,6 +16,7 @@ particular emulator. Users are responsible for ensuring that every source
 image and use is lawful and properly authorized.
 
 - [REQUIREMENTS.md](REQUIREMENTS.md): product and compatibility requirements
+- [FORMAT-SPEC-v0.4.md](FORMAT-SPEC-v0.4.md): review extension for persistent write protection and standalone edited media; read together with v0.3 and v0.2
 - [FORMAT-SPEC-v0.3.md](FORMAT-SPEC-v0.3.md): current binary format update, including FLXS compact-surface timing
 - [FORMAT-SPEC-v0.2.md](FORMAT-SPEC-v0.2.md): base container layouts, read with the v0.3 update
 - [CONVERTER-CONFORMANCE.md](CONVERTER-CONFORMANCE.md): converter and reader validation plan
@@ -27,6 +28,11 @@ image and use is lawful and properly authorized.
 Version 0.3 is the current review draft. It adds FLXS, a per-surface stream of source-quantum transition deltas, alongside CELL/PHAS. It preserves recorded revolutions, INDEX timing and record advance while allowing independent compression and exact sharing. Readers retain v0.1/v0.2 compatibility; older readers must reject unsupported v0.3 data. Writers must not label files as stable release files until the format is frozen as version 1.0.
 
 ## License
+
+Version 0.4 is an additional review draft for write protection and edited media.
+Its publication does not certify converter conformance or universal writable
+image support. Version 0.3 remains the baseline for unedited images; readers
+must reject unsupported minor versions instead of ignoring protection.
 
 The X98 format specification and accompanying documentation are licensed under
 the [Creative Commons Attribution 4.0 International License](LICENSE.md)
